@@ -8,11 +8,18 @@ In that same program, create a list with at least 10 cities,
 And print their current weather in the following format:
 “The weather in <city>, <country>(full country name) is XX degrees.
 '''
-import requests 
-from requests import get
+# import necessary modules
+import re
+import json
+from urllib.request import urlopen
 
+# set varibles
+url = 'http://ipinfo.io/json'
+response = urlopen(url)
+data = json.load(response)
 
-location_by_ip_api = get('http://ip-api.com/json').text
-geo_list = str(location_by_ip_api)
-print(geo_list)
+city = data['city']
+country=data['country']
+
+print('Region : {} \nCity  : {}'.format(country,city))
 
